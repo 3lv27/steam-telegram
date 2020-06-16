@@ -1,0 +1,35 @@
+target/
+boot/
+lib_managed/
+src_managed/
+project/plugins/project/
+
+#app secrets
+conf/application.conf
+conf/steam.conf
+conf/telegram.conf
+
+# intellij idea
+*.log
+*.iml
+*.ipr
+*.iws
+.idea
+
+# other?
+.history
+.scala_dependencies
+.cache
+.cache-main
+logs/
+.cache/
+
+# mac
+.DS_Store
+
+#general
+*.class
+
+# Application log file and compressed previous logs (see conf/logback.xml)
+var/log/app_log.json
+var/log/app_log-*.gz
