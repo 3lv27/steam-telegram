@@ -8,6 +8,6 @@ object ConfigLoader {
   private val telegramConfig: Config = ConfigFactory.load("telegram").getConfig("creds")
 
   val steam = Map("apiKey" ->  steamConfig.getString("apiKey"), "myId" ->  steamConfig.getString("myId"))
-  val telegram =  Map("apiKey" ->  telegramConfig.getString("botKey"), "chatId" -> telegramConfig.getString("chatId.dev"))
+  val telegram =  Map("botKey" ->  telegramConfig.getString("botKey"), "chatId" -> telegramConfig.getString("chatId.prod"))
 
 }
