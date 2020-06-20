@@ -41,7 +41,7 @@ object Steam2telegram  {
       player.game = playerCurrentStatus.game
       player.gameId = playerCurrentStatus.gameId
     }
-    
+
 
   }
 
