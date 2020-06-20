@@ -33,14 +33,15 @@ object Steam2telegram  {
   def updatePlayersInfo(friendsInfo: JsValue):Unit = {
     val list = mapResponse(friendsInfo)
 
-    Steam2telegram.playersList.foreach(player => {
-      list.foreach(toUpdate => {
-        if (player.steamId == toUpdate.steamId) {
-          player.game = toUpdate.game
-          player.gameId = toUpdate.gameId
-        }
-      })
-    })
+    for {
+      playerCurrentStatus <- list
+      player <- Steam2telegram.playersList
+      if (player.steamId == playerCurrentStatus.steamId)
+    } yield {
+      player.game = playerCurrentStatus.game
+      player.gameId = playerCurrentStatus.gameId
+    }
+    
 
   }
 

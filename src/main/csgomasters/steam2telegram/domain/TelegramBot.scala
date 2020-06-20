@@ -7,8 +7,8 @@ import play.api.libs.json.JsValue
 object TelegramBot {
 
   private val baseUrl = "https://api.telegram.org"
-  private val botKey = ConfigLoader.steam("botKey")
-  private val chatId =  ConfigLoader.steam("chatId")
+  private val botKey = ConfigLoader.telegram("botKey")
+  private val chatId =  ConfigLoader.telegram("chatId")
 
 
   def sendMessage(message: String): JsValue = {
