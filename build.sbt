@@ -1,6 +1,6 @@
 /** ********* PROJECT INFO ******************/
 name := "steam-telegram"
-version := "0.0.4"
+version := "0.0.5"
 
 /** ********* PROJECT SETTINGS ******************/
 Configuration.settings

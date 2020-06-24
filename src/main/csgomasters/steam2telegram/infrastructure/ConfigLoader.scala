@@ -4,10 +4,19 @@ import com.typesafe.config.{Config, ConfigFactory}
 
 object ConfigLoader {
 
-  private val steamConfig: Config = ConfigFactory.load("steam").getConfig("creds")
-  private val telegramConfig: Config = ConfigFactory.load("telegram").getConfig("creds")
+  private val steamConfig: Config = ConfigFactory.load("steam").getConfig("config")
+  private val telegramConfig: Config = ConfigFactory.load("telegram").getConfig("config")
+  private val localEnvironment: Boolean = Option(System.getenv("APP_ENV")).getOrElse("").nonEmpty
+  private val chatId: String = if (localEnvironment) "dev" else "prod"
 
-  val steam = Map("apiKey" ->  steamConfig.getString("apiKey"), "myId" ->  steamConfig.getString("myId"))
-  val telegram =  Map("botKey" ->  telegramConfig.getString("botKey"), "chatId" -> telegramConfig.getString("chatId.prod"))
+  val steam = Map(
+    "apiKey" ->  steamConfig.getString("apiKey"),
+    "myId" -> steamConfig.getString("myId"),
+    "gameId" ->  steamConfig.getString("gameId")
+  )
+  val telegram =  Map(
+    "botKey" ->  telegramConfig.getString("botKey"),
+    "chatId" -> telegramConfig.getString(s"chatId.$chatId")
+  )
 
 }

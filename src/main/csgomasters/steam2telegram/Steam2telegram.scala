@@ -7,17 +7,18 @@ import java.util.Timer
 import csgomasters.steam2telegram.infrastructure.Tools.{cache, mapResponse}
 import csgomasters.steam2telegram.domain.{Player, SteamApi, SteamFriends, TelegramBot}
 import csgomasters.steam2telegram.infrastructure.scala_logging.ScalaLoggingLogger
+import csgomasters.steam2telegram.infrastructure.ConfigLoader
 
 
 object Steam2telegram  {
 
   private var playersList:Seq[Player] = Seq[Player]()
   private val logger = new ScalaLoggingLogger()
+  private val gameId = Some(ConfigLoader.steam("gameId"))
 
   private def notifyOnlinePlayers(player: Player): Unit = {
-    val csgoId = Some("730")
     logger.info(s"[Steam2telegram][notifyOnlinePlayers] > $player")
-    if (player.gameId == csgoId && !player.currentlyOnline) {
+    if (player.gameId == gameId && !player.currentlyOnline) {
       logger.info(s"[Steam2telegram][notifyOnlinePlayers][ONLINE] > $player")
       player.currentlyOnline = true
       TelegramBot.friendIsOnlineMessage(player)
@@ -42,9 +43,7 @@ object Steam2telegram  {
       player.gameId = playerCurrentStatus.gameId
     }
 
-
   }
-
 
   def checkForOnlinePlayersTask(): Unit = {
     logger.info("[Steam2telegram][checkForOnlinePlayersTask] > Calling task")

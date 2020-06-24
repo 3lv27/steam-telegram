@@ -23,6 +23,7 @@ conf/telegram.conf
 .cache-main
 logs/
 .cache/
+.env
 
 # mac
 .DS_Store
