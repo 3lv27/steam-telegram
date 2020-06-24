@@ -9,6 +9,7 @@ object ConfigLoader {
   private val localEnvironment: Boolean = Option(System.getenv("APP_ENV")).getOrElse("").nonEmpty
   private val chatId: String = if (localEnvironment) "dev" else "prod"
 
+
   val steam = Map(
     "apiKey" ->  steamConfig.getString("apiKey"),
     "myId" -> steamConfig.getString("myId"),
